@@ -6,7 +6,7 @@ gravitrax_leveler();
 
 module gravitrax_leveler(){
     outer_w = 45; outer_d = 2*outer_w / sqrt(3);
-    inner_w = 30; inner_d = 2*inner_w / sqrt(3);
+    inner_w = 29.7; inner_d = 2*inner_w / sqrt(3);
     height = 10;
     holes_d = 4 + nozzle_d;
     holes_h = 6;
@@ -28,7 +28,7 @@ module gravitrax_leveler(){
         }
 
         // cut out
-        translate([0,0,-chamfer_h - epsilon]) cylinder($fn=6, h=height+extrusion_h, d1=inner_d+nozzle_d, d2=inner_d-2*extrusion_t);
+        translate([0,0,-chamfer_h - epsilon]) cylinder($fn=6, h=height+extrusion_h, d1=inner_d+0.5, d2=inner_d-2*extrusion_t);
 
         // holes
         holes_offset_d = (outer_d + inner_d - holes_d)/4 + extrusion_t/2;
