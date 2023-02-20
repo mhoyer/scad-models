@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="heater-towel-bracket.svg"
+   inkscape:version="1.1.1 (eb90963e84, 2021-10-02)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="3.4066218"
+     inkscape:cx="104.20881"
+     inkscape:cy="998.6433"
+     inkscape:window-width="1920"
+     inkscape:window-height="1136"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer3"
+     inkscape:snap-bbox="true"
+     inkscape:snap-bbox-midpoints="false"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-page="true"
+     inkscape:snap-grids="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid12664" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <inkscape:path-effect
+       effect="bspline"
+       id="path-effect1819"
+       is_visible="true"
+       lpeversion="1"
+       weight="33.333333"
+       steps="2"
+       helper_size="0"
+       apply_no_weight="true"
+       apply_with_weight="true"
+       only_selected="false" />
+    <inkscape:path-effect
+       effect="pts2ellipse"
+       id="path-effect1779"
+       is_visible="true"
+       lpeversion="1"
+       method="auto"
+       gen_arc="false"
+       arc_other="false"
+       slice_arc="false"
+       gen_isometric_frame="false"
+       draw_axes="false"
+       gen_perspective_frame="false"
+       draw_perspective_axes="false"
+       rot_axes="0"
+       draw_ori_path="false" />
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Layer"
+     style="display:inline">
+    <path
+       style="fill:none;stroke:#0000b6;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 3.2656057,273.87341 c -0.02786,0.62598 -0.137559,1.57239 -0.769453,2.80441 -1.221194,2.381 -1.76234704,5.12183 -1.369402,7.81209 0.534065,5.95798 5.14189,10.80316 11.7562463,11.45809 5.736226,0.54435 11.567245,-3.30952 13.308125,-8.95646 0.44872,-1.36133 0.62016,-3.52939 0.61769,-4.9662 -0.27087,-4.43873 -0.898954,-6.79563 -1.90533,-12.09626 -1.006376,-5.30063 -1.255235,-27.60268 -0.869475,-35.63555 0.385759,-8.03288 12.805043,-8.0561 10.222138,3.62796"
+       id="circle3596-5"
+       sodipodi:nodetypes="cscccczzc" />
+  </g>
+</svg>

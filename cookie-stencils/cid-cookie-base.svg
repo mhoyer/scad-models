@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 50 50"
+   fill="none"
+   version="1.1"
+   id="svg33"
+   sodipodi:docname="cid-cookie-base.svg"
+   inkscape:version="1.2.1 (0f2f062aeb, 2022-09-21, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview35"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     showgrid="false"
+     showguides="true"
+     inkscape:zoom="18.015156"
+     inkscape:cx="29.835989"
+     inkscape:cy="5.7729169"
+     inkscape:window-width="1920"
+     inkscape:window-height="1144"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g26" />
+  <g
+     clip-path="url(#clip0_901_30842)"
+     id="g26">
+    <path
+       style="fill:#000000;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="M 13.646484,0.64257812 30,6.6308594 h 13.363281 v 4.8593746 l 5.994141,2.171875 -5.994141,16.472657 -0.05273,13.277343 H 38.464848 L 36.35352,49.357422 20.00977,43.412109 H 6.5507812 V 38.507812 L 0.64257812,36.400391 6.6035156,20.134766 V 6.5996094 h 4.9316404 l 2.111328,-5.95703128 v 0"
+       id="path5671" />
+  </g>
+  <defs
+     id="defs31">
+    <clipPath
+       id="clip0_901_30842">
+      <rect
+         width="50"
+         height="50"
+         fill="white"
+         id="rect28" />
+    </clipPath>
+  </defs>
+</svg>
