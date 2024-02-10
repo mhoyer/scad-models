@@ -3,7 +3,7 @@ epsilon = 0.05;
 infinite = 500;
 
 wall_thickness = 1.6;
-hole_d = 3.5;
+hole_d = 3.4;
 
 he_length = 100;
 he_width = 64.3;
@@ -11,31 +11,65 @@ he_height = 100;
 
 ring_outer_d = 86;
 ring_inner_d = 72;
-ring_spacer = 8;
+ring_spacer = 3.6;
+ring_height = 3*wall_thickness;
+
+cut_out_w = 11;
 
 difference() {
     union() {
-        translate([-wall_thickness/1.33,         23.2, wall_thickness/2+2*epsilon]) cube(size=[1.5*wall_thickness, 10, ring_spacer+13], center=true);
-        translate([he_width+wall_thickness/1.33, 29.8, wall_thickness/2+2*epsilon]) cube(size=[1.5*wall_thickness, 10, ring_spacer+13], center=true);
-        translate([he_width+wall_thickness/1.33, 62.1, wall_thickness/2+2*epsilon]) cube(size=[1.5*wall_thickness, 10, ring_spacer+13], center=true);
+        // hotend connectors
+        translate([-wall_thickness/2, 23.2,          (8 - ring_spacer - wall_thickness)/2])
+        cube(size=[wall_thickness, 10,                8 + ring_spacer + wall_thickness], center=true);
 
-        translate([he_width/2, ring_outer_d/2, -ring_spacer-3*wall_thickness])
+        translate([he_width+wall_thickness/2, 29.8, (11 - ring_spacer - wall_thickness)/2])
+        cube(size=[wall_thickness, 10,                11 + ring_spacer + wall_thickness], center=true);
+
+        translate([he_width+wall_thickness/2, 62.1,  (11 - ring_spacer - wall_thickness)/2])
+        cube(size=[wall_thickness, 10,                11 + ring_spacer + wall_thickness], center=true);
+
+        // the ring
+        translate([he_width/2, ring_outer_d/2, -ring_height-ring_spacer])
         difference() {
             union() {
-                // cylinder(d=ring_inner_d+5*wall_thickness, h=4*wall_thickness);
-                cylinder(d=ring_outer_d+2*wall_thickness, h=3*wall_thickness);
+                cylinder(d=ring_outer_d+2*wall_thickness, h=ring_height);
             }
 
-            difference() {
-                translate([0, 0, -epsilon]) cylinder(d=(ring_outer_d + ring_inner_d + wall_thickness)/2, h=2*wall_thickness);
-                translate([0, 0, -2*epsilon]) cylinder(d=ring_inner_d-wall_thickness/1.5, h=infinite);
-            }
+            // mid layer exclude
+            translate([0, 0, wall_thickness/2-epsilon])
+            cylinder(d=ring_outer_d, h=1.5*wall_thickness);
 
-            difference() {
-                translate([0, 0, -epsilon]) cylinder(d=ring_outer_d+wall_thickness/2, h=2*wall_thickness);
-                translate([0, 0, -2*epsilon]) cylinder(d=(ring_outer_d + ring_inner_d + wall_thickness)/2+wall_thickness/3, h=infinite);
-            }
+            // bottom layer exclude
+            translate([0, 0, -wall_thickness-epsilon])
+            cylinder(d=ring_outer_d, h=3*wall_thickness);
+
+            // large center hole
             translate([0, 0, -infinite/2]) cylinder(d=ring_inner_d-wall_thickness, h=infinite);
+
+            // cut out
+            translate([0, ring_outer_d-3*wall_thickness, 0])
+            cube(size=[cut_out_w, ring_outer_d, infinite], center=true);
+        }
+
+        // three bottom ring clips
+
+        translate([he_width/2, ring_outer_d/2, -ring_height-ring_spacer])
+        rotate([0,0,78])
+        union() {
+            translate([ring_outer_d/2-wall_thickness/2, 0, 0])
+            cube(size=[wall_thickness, 2*wall_thickness, wall_thickness/2]);
+
+            rotate([0,0,20])
+            translate([ring_outer_d/2-wall_thickness/2, 0, 0])
+            cube(size=[wall_thickness, 2*wall_thickness, wall_thickness/2]);
+
+            rotate([0,0,140])
+            translate([ring_outer_d/2-wall_thickness/3, 0, 0])
+            cube(size=[wall_thickness, 2*wall_thickness, wall_thickness/2]);
+
+            rotate([0,0,240])
+            translate([ring_outer_d/2-wall_thickness/3, 0, 0])
+            cube(size=[wall_thickness, 2*wall_thickness, wall_thickness/2]);
         }
     }
 
