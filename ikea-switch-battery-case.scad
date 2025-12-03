@@ -67,12 +67,26 @@ case_h = aaa_bat_d-0.8; // = 9.5
 
 module case() {
     union() {
-        // battery compartment
         difference() {
             translate([0, 0, aaa_bat_d/2+1.4])
-            cube(size=[case_w, case_l, case_h], center=true);
+            hull() {
+                cube(size=[case_w, case_l, case_h], center=true);
+                cube(size=[pcb_w+thickness, pcb_l+thickness, case_h], center=true);
+            }
 
-            // translate([0, -10, 0]) // debug
+            translate([0, 0, aaa_bat_d/2])
+            hull() {
+                cube(size=[pcb_w, pcb_l, aaa_bat_d], center=true);
+                cube(size=[pcb_w-thickness, aaa_bat_h-7, aaa_bat_d], center=true);
+            }
+
+            hull() {
+                cube(size=[pcb_w, pcb_l-12, infinity], center=true);
+                cube(size=[2*aaa_bat_d-thickness, aaa_bat_h-7, infinity], center=true);
+            }
+            translate([0, 0, aaa_bat_d/2])
+            cube(size=[pcb_w, pcb_l, aaa_bat_d], center=true);
+
             hull() {
                 cube(size=[2*aaa_bat_d+0.5, aaa_bat_h+0.2, aaa_bat_d], center=true);
 
@@ -84,7 +98,6 @@ module case() {
                 rotate([-90, 0, 0])
                 cylinder(r=aaa_bat_d/2, h=aaa_bat_h+0.6, center=true);
             }
-
             // rail cut out
             translate([0, 0, 3])
             cube(size=[infinity, 12.5, 4.5], center=true);
@@ -139,34 +152,6 @@ module case() {
             translate([-aaa_bat_d/2, 0, 0])
             cube(size=[1, infinity, 5], center=true);
         }
-    }
-}
-
-clip_top_w = pcb_l + 2*thickness;
-clip_btm_w = case_w + 2*thickness;
-module clip() {
-    difference() {
-        union() {
-            translate([0, 3.275, 5])
-            cube(size=[clip_top_w-1.6, 16, 10], center=true);
-
-            translate([0, 0, -3.7])
-            cube(size=[clip_btm_w-1.6, 9.45, 7.5], center=true);
-        }
-
-        // top-down cut outs
-        translate([0.5, 0, 6.25])
-        cube(size=[pcb_l-1.5, infinity, 5], center=true);
-        translate([0, 0, 4])
-        cube(size=[pcb_l+0.2, infinity, 1.3], center=true);
-        translate([0.5, 0, 2.5])
-        cube(size=[pcb_l-1.5, infinity, 2.5], center=true);
-
-        translate([-(clip_btm_w-1.7*thickness)/2, -infinity/2, -6.31])
-        cube(size=[clip_btm_w-1.7*thickness, infinity, 6.3]);
-
-        translate([0, 0, -8])
-        cube(size=[clip_btm_w-3.3*thickness, infinity, 15], center=true);
     }
 }
 
