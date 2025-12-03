@@ -68,25 +68,30 @@ case_h = aaa_bat_d-0.8; // = 9.5
 module case() {
     union() {
         difference() {
-            translate([0, 0, aaa_bat_d/2+1.4])
+            translate([0, 0, aaa_bat_d/2+1.4+diff/2])
             hull() {
-                cube(size=[case_w, case_l, case_h], center=true);
-                cube(size=[pcb_w+thickness, pcb_l+thickness, case_h], center=true);
+                cube(size=[case_w, case_l, case_h+diff], center=true);
+                cube(size=[pcb_w+thickness, pcb_l+thickness, case_h+diff], center=true);
             }
 
-            translate([0, 0, aaa_bat_d/2])
+            color("red")
+            translate([0, 0, diff-thickness/2])
             hull() {
-                cube(size=[pcb_w, pcb_l, aaa_bat_d], center=true);
-                cube(size=[pcb_w-thickness, aaa_bat_h-7, aaa_bat_d], center=true);
+                cube(size=[pcb_l+0.2, pcb_w+0.5, 2*aaa_bat_d], center=true);
+                cube(size=[pcb_l-thickness, aaa_bat_h-7, 2*aaa_bat_d], center=true);
             }
 
+            color("green")
+            translate([0, 0, aaa_bat_d/2+diff+0.3])
+            cube(size=[pcb_l+0.2, pcb_w+0.2, aaa_bat_d], center=true);
+
+            // big bottom cut out
             hull() {
-                cube(size=[pcb_w, pcb_l-12, infinity], center=true);
+                cube(size=[pcb_l-thickness, pcb_l-12, infinity], center=true);
                 cube(size=[2*aaa_bat_d-thickness, aaa_bat_h-7, infinity], center=true);
             }
-            translate([0, 0, aaa_bat_d/2])
-            cube(size=[pcb_w, pcb_l, aaa_bat_d], center=true);
 
+            // battery compartment cut out
             hull() {
                 cube(size=[2*aaa_bat_d+0.5, aaa_bat_h+0.2, aaa_bat_d], center=true);
 
@@ -98,19 +103,10 @@ module case() {
                 rotate([-90, 0, 0])
                 cylinder(r=aaa_bat_d/2, h=aaa_bat_h+0.6, center=true);
             }
+
             // rail cut out
             translate([0, 0, 3])
             cube(size=[infinity, 12.5, 4.5], center=true);
-
-            translate([0, 0, aaa_bat_d/2])
-            cube(size=[2*aaa_bat_d+0.5, aaa_bat_h-7, aaa_bat_d], center=true);
-
-            hull() {
-                translate([0,-5,0])
-                cylinder(d=2*aaa_bat_d, h=infinity, center=true);
-                translate([0,-2,0])
-                cylinder(d=2*aaa_bat_d, h=infinity, center=true);
-            }
 
             // holes
             union() {
@@ -133,27 +129,15 @@ module case() {
                 translate([-aaa_bat_d/2, -aaa_bat_h/2-0.1])
                 cylinder(r=.6, h=infinity, center=true);
 
-                // pcb holes
-                // m3_hole = 3.3;
-                // translate([0, (pcb_l+m3_hole)/2])
-                // cylinder(d=m3_hole, h=infinity, center=true);
-                // translate([0, -(pcb_l+m3_hole)/2])
-                // cylinder(d=m3_hole, h=infinity, center=true);
-
-                // mount holes
-                translate([2, 10])
-                cylinder(d=2, h=infinity, center=true);
-                translate([-2, 10])
-                cylinder(d=2, h=infinity, center=true);
+                color("yellow")
+                translate([aaa_bat_d/2, 0, 0])
+                cube(size=[1, infinity, 5], center=true);
+                color("yellow")
+                translate([-aaa_bat_d/2, 0, 0])
+                cube(size=[1, infinity, 5], center=true);
             }
-
-            translate([aaa_bat_d/2, 0, 0])
-            cube(size=[1, infinity, 5], center=true);
-            translate([-aaa_bat_d/2, 0, 0])
-            cube(size=[1, infinity, 5], center=true);
         }
     }
 }
 
 case();
-// translate([0, 0, 11.3]) clip();
