@@ -15,7 +15,7 @@ display_offset = [ 14, 3.8, 2 ];
 push_btn_diameter = 3;
 push_btn_height = 2.5;
 lower_push_btn_offset = [
-    1+push_btn_diameter/2,
+    1.9+push_btn_diameter/2,
     4.3,
     pcb_thickness
 ];
@@ -126,10 +126,10 @@ module bottom_case() {
 }
 
 module top_case() {
+    top_case_height = display_offset[2] + display_thickness - pcb_thickness + case_thickness*0.6;
+
     difference() {
         union() {
-            top_case_height = display_offset[2] + display_thickness - pcb_thickness + case_thickness/4;
-
             // main body
             translate([-case_thickness, -case_thickness, pcb_thickness + epsilon])
             cube(size=[
@@ -137,14 +137,6 @@ module top_case() {
                 pcb_width + 2*case_thickness,
                 top_case_height
             ]);
-
-            // // usb port hinge
-            // translate([-2*case_thickness-epsilon, usb_offset[1] -case_thickness, epsilon])
-            // cube(size=[
-            //     2*case_thickness,
-            //     usb_port_width + 2*case_thickness,
-            //     top_case_height + pcb_thickness
-            // ]);
         }
 
         // inner cutout
@@ -174,7 +166,7 @@ module top_case() {
         ]);
 
         // display cutout
-        display_hangover = 0.5;
+        display_hangover = 0.7;
         translate([
             display_offset[0] + display_hangover + 2,
             display_offset[1] + display_hangover,
@@ -187,16 +179,15 @@ module top_case() {
 
         // button cutouts
         translate(lower_push_btn_offset)
-        scale([1.2, 1.1, 2])
+        scale([1.4, 1.3, 2])
         cylinder(r=push_btn_diameter/2, h=push_btn_height);
 
         translate(upper_push_btn_offset)
-        scale([1.2, 1.1, 2])
+        scale([1.4, 1.3, 2])
         cylinder(r=push_btn_diameter/2, h=push_btn_height);
 
         // usb port cutout
-        translate([-1, 0, 0.1])
-        usb_port(1.05);
+        translate([-1.1, 0, 0.1]) usb_port(1.2);
 
         // reset button cutout
         translate([reset_btn_offset[0]-0.2, reset_btn_offset[1]-2, reset_btn_offset[2]-1.8])
@@ -206,6 +197,23 @@ module top_case() {
             reset_btn_height + 2
         ]);
     }
+
+    rails_height = top_case_height - 0.2;
+    rails_z_offset = pcb_thickness + 0.1;
+
+    // supportive rails behind USB port
+    translate([usb_port_length, (pcb_width-case_thickness)/2, rails_z_offset])
+    cube(size=[case_thickness, case_thickness, rails_height]);
+
+    // supportive rails besides display
+    translate([display_offset[0]+4, 1, rails_z_offset])
+    cube(size=[display_length*0.8, case_thickness, rails_height]);
+    translate([display_offset[0]+4, pcb_width-case_thickness-1, rails_z_offset])
+    cube(size=[display_length*0.8, case_thickness, rails_height]);
+
+    // supportive rails at the tail
+    translate([pcb_length-4, case_thickness/2, rails_z_offset])
+    cube(size=[case_thickness, pcb_width-case_thickness, rails_height]);
 }
 
 
@@ -228,8 +236,8 @@ difference() {
     // translate([pcb_length/2-2, -infinity/2, -infinity/2])
     // cube(size=[4, infinity, infinity]);
 
-    // // translate([pcb_length/2, -infinity/2, -infinity/2])
-    // // cube(size=[infinity, infinity, infinity]);
+    // translate([pcb_length/2, -infinity/2, -infinity/2])
+    // cube(size=[infinity, infinity, infinity]);
     // translate([-infinity/2, pcb_width/2, -infinity/2])
     // cube(size=[infinity, infinity, infinity]);
 }
