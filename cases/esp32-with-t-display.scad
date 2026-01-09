@@ -16,12 +16,12 @@ push_btn_diameter = 3;
 push_btn_height = 2.5;
 lower_push_btn_offset = [
     1.9+push_btn_diameter/2,
-    4.3,
+    4.6,
     pcb_thickness
 ];
 upper_push_btn_offset = [
     lower_push_btn_offset[0],
-    pcb_width-lower_push_btn_offset[1],
+    pcb_width-lower_push_btn_offset[1]+0.3,
     lower_push_btn_offset[2]
 ];
 
@@ -177,13 +177,14 @@ module top_case() {
             50
         ]);
 
-        // button cutouts
+        // lower button cutouts
         translate(lower_push_btn_offset)
-        scale([1.4, 1.3, 2])
+        scale([1.5, 1.5, 2])
         cylinder(r=push_btn_diameter/2, h=push_btn_height);
 
+        // upper button cutouts
         translate(upper_push_btn_offset)
-        scale([1.4, 1.3, 2])
+        scale([1.5, 1.5, 2])
         cylinder(r=push_btn_diameter/2, h=push_btn_height);
 
         // usb port cutout
@@ -202,8 +203,8 @@ module top_case() {
     rails_z_offset = pcb_thickness + 0.1;
 
     // supportive rails behind USB port
-    translate([usb_port_length, (pcb_width-case_thickness)/2, rails_z_offset])
-    cube(size=[case_thickness, case_thickness, rails_height]);
+    translate([usb_port_length-0.5, (pcb_width-usb_port_width)/2, rails_z_offset])
+    cube(size=[case_thickness, usb_port_width, rails_height]);
 
     // supportive rails besides display
     translate([display_offset[0]+4, 1, rails_z_offset])
